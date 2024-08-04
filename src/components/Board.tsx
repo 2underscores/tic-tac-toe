@@ -1,3 +1,4 @@
+import './Board.css'
 import Square from "./Square";
 
 
