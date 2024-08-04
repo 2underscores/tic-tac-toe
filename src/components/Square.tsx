@@ -14,7 +14,7 @@ export default function Square({index, value, clickHandler}: any) {
             case -1:
                 return 'O';
             case 0:
-                return '  ';
+                return '';
         }
     }
 
