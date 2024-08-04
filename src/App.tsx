@@ -13,7 +13,7 @@ type GameOutcome = 'WIN P1' | 'WIN P2' | 'DRAW' | 'ONGOING';
 function App() {
   const starter_board: BoardType = new Array(BOARD_SIZE*BOARD_SIZE).fill(BLANK);
   const [game, setGame] = useState<GameType>([starter_board])
-  const [msg, setMsg] = useState('')
+  const [msg, setMsg] = useState('') // TODO: Make this an actual "GAME STATE" variable
 
   function turnClickHandler(clickIndex: number) {
     const new_board = game[game.length - 1].slice();
@@ -56,11 +56,9 @@ function App() {
 
   return (
     <>
+      <div>{msg}</div>
       <Board board={game[game.length-1]} turnHandler={turnClickHandler}/>
       <button onClick={resetBoard}>Reset</button>
-      <div>
-        {msg}
-      </div>
     </>
   )
 }
