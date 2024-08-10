@@ -1,18 +1,40 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   },
+  "exclude": [
+    "node_modules",
+    "cdk.out"
+  ],
   "files": [],
   "references": [
     {
       "path": "./app/frontend/tsconfig.app.json"
     },
+    // { "path": "./app/backend/tsconfig.json" },
     {
-      "path": "./app/frontend/tsconfig.node.json"
+      "path": "./infra/tsconfig.json"
     }
   ]
 }
