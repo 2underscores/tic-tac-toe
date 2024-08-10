@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"; // React 17+ no longer requires in jsx. automatic JSX runtime autoimports
 import './Square.css'
 
 // interface SquareProps {

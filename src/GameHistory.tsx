@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react"; // React 17+ no longer requires in jsx. automatic JSX runtime autoimports
 
 function HistoryButton({index, clickHandler}: any) {
     return (
@@ -12,11 +12,10 @@ function HistoryButton({index, clickHandler}: any) {
 
 export default function GameHistory({selectedIndex, latestIndex, clickHandler}: any) {
     const buttons = Array.from({length: latestIndex+1}).map((_, idx)=><HistoryButton index={idx} clickHandler={clickHandler}/>)
-    // console.log(buttons);
     return (
         <>
             <div className="GameHistory">
-                Game History
+                Game History ({selectedIndex} selected)
                 <div>
                     {buttons}
                 </div>
