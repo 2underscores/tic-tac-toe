@@ -1,0 +1,15 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+      // Add or override any frontend-specific options here
+    },
+    "references": [
+        {
+          "path": "./tsconfig.app.json"
+        },
+        {
+          "path": "./tsconfig.node.json"
+        }
+    ],
+    // "include": ["src/**/*.ts"] // Referenced files have the include
+  }

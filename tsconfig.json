@@ -1,11 +1,18 @@
 {
+  "compilerOptions": {
+    "target": "ESNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+  },
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./app/frontend/tsconfig.app.json"
     },
     {
-      "path": "./tsconfig.node.json"
+      "path": "./app/frontend/tsconfig.node.json"
     }
   ]
 }
