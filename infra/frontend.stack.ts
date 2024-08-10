@@ -4,6 +4,7 @@ import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as route53Targets from 'aws-cdk-lib/aws-route53-targets';
 import * as certificatemanager from 'aws-cdk-lib/aws-certificatemanager';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
+import * as path from 'path';
 
 export class FrontendStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -38,9 +39,16 @@ export class FrontendStack extends cdk.Stack {
     });
 
     // Create a certificate for the domain
-    const certificate = new certificatemanager.Certificate(this, 'SiteCertificate', {
+    // const certificate = new certificatemanager.Certificate(this, 'SiteCertificate', {
+    //   domainName: fullDomainName,
+    //   validation: certificatemanager.CertificateValidation.fromDns(hostedZone),
+    // });
+    // Using deprecated method to avoid creating stack in us-east-1 for cert for cloudfront
+    // Amplify uses a custom resource lambda to deploy the cert in us-east-1. So does this actually. They use same thing
+    const certificate = new certificatemanager.DnsValidatedCertificate(this, 'SiteCertificate', {
       domainName: fullDomainName,
-      validation: certificatemanager.CertificateValidation.fromDns(hostedZone),
+      hostedZone: hostedZone,
+      region: 'us-east-1',
     });
 
     const distribution = new cdk.aws_cloudfront.CloudFrontWebDistribution(this, 'Distribution', {
@@ -68,8 +76,9 @@ export class FrontendStack extends cdk.Stack {
     });
 
     // Deploy the contents of the dist folder to the S3 bucket
+    const distPath = path.join(process.cwd(), 'app/frontend/dist');
     new s3deploy.BucketDeployment(this, 'DeployWithInvalidation', {
-      sources: [s3deploy.Source.asset('../app/frontend/dist')],
+      sources: [s3deploy.Source.asset(distPath)],
       destinationBucket: hostingBucket,
       distribution,
       distributionPaths: ['/*'],
