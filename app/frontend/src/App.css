@@ -40,3 +40,20 @@
 .read-the-docs {
   color: #888;
 }
+
+.scores-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.score-item {
+  text-align: center;
+  font-size: 24px; /* Adjust the size as needed */
+}
+
+.score-item.highlighted {
+  text-align: center;
+  font-size: 24px; /* Adjust the size as needed */
+  color: green;
+}
