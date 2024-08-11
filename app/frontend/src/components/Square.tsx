@@ -6,7 +6,7 @@ import './Square.css'
 //     value: number
 // }
 
-export default function Square({index, value, clickHandler}: any) {
+export default function Square({index, value, winner, clickHandler}: any) {
     function SymbolMapper(cellVal: number) {
         switch (cellVal) {
             case 1:
@@ -19,10 +19,10 @@ export default function Square({index, value, clickHandler}: any) {
     }
 
     return (
-        <div>
-            <button className="GameCell" onClick={()=>{clickHandler(index)}}>
+        
+            <button className={`GameCell col${index%3} row${Math.floor(index/3)} ${winner ? 'winner' : ''}`} onClick={()=>{clickHandler(index)}}>
                 {SymbolMapper(value)}
             </button>
-        </div>
+        
     )
 }

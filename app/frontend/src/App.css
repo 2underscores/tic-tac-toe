@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-size: 24px;
 }
 
 .logo {
@@ -49,11 +50,20 @@
 
 .score-item {
   text-align: center;
-  font-size: 24px; /* Adjust the size as needed */
 }
 
 .score-item.highlighted {
   text-align: center;
-  font-size: 24px; /* Adjust the size as needed */
   color: green;
+}
+
+.game-status {
+  color: green;
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.game-status.ONGOING {
+  opacity: 0.0;
 }

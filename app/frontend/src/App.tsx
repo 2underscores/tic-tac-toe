@@ -43,19 +43,26 @@ function App() {
   }
 
   function gameState(board: BoardType): GameStatus {
-    const winLineIndexes = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-    for (let winLine of winLineIndexes) {
-      let sum = winLine.reduce((acc, idx) => acc + board[idx], 0);
-      if (sum === 3) {
-        return 'WIN_X';
-      } else if (sum === -3) {
-        return 'WIN_O';
-      }
+    const winLine = getWinline(board);
+    if (winLine) {
+      return board[winLine[0]] === 1 ? 'WIN_X' : 'WIN_O';
     }
     if (!new Set(board).has(BLANK)) {
       return "DRAW";
     }
     return "ONGOING";
+  }
+
+  function getWinline(board: BoardType): number[] | null {
+    // TODO: Duplicate code in Board.tsx, pass or define there or something
+    const winLineIndexes = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    for (let winLine of winLineIndexes) {
+      let sum = winLine.reduce((acc, idx) => acc + board[idx], 0);
+      if (Math.abs(sum) === 3) {
+        return winLine;
+      }
+    }
+    return null;
   }
 
   function scoreGame(state: GameStatus): void {
@@ -84,8 +91,20 @@ function App() {
     return true;
   }
 
+  function gameStateToText(state: GameStatus): string {
+    if (state === 'WIN_X') {
+      return "Player X wins!";
+    } else if (state === 'WIN_O') {
+      return "Player O wins!";
+    } else if (state === 'DRAW') {
+      return "It's a draw!";
+    }
+    return "Game in progress";
+  }
+
   return (
     <>
+      <div className={`game-status ${gameState(game[historyIndex])}`}>{gameStateToText(gameState(game[historyIndex]))}</div>
       <Board board={game[historyIndex]} turnHandler={turnClickHandler} />
       <GameHistory selectedIndex={historyIndex} latestIndex={game.length - 1} clickHandler={historyClickHandler} />
       <div className="scores-container">

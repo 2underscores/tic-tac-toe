@@ -12,7 +12,7 @@
     padding: 0%;
     border-radius: 50%; /* Makes the button circular */
     background-color: #ccc; /* Example background color */
-    border: 2px solid #000; /* Optional: adds a border to the buttons */
+    border: 2px solid #ccc; /* Optional: adds a border to the buttons */
     margin: 0 5px; /* Adds horizontal space between buttons */
     display: inline-block; /* Ensures buttons stay in a line */
     box-sizing: border-box; /* Ensures padding and border are included in the width/height */
@@ -24,6 +24,6 @@
 }
 
 .HistoryButton.unplayed {
-    background-color: #252525;
+    background-color: transparent;
     /* Color for filled dots */
 }
