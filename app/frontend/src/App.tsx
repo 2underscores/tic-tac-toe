@@ -44,7 +44,7 @@ function App() {
 
   function gameState(board: BoardType): GameStatus {
     const winLine = getWinline(board);
-    if (winLine) {
+    if (!(winLine.length === 0)) {
       return board[winLine[0]] === 1 ? 'WIN_X' : 'WIN_O';
     }
     if (!new Set(board).has(BLANK)) {
@@ -53,8 +53,7 @@ function App() {
     return "ONGOING";
   }
 
-  function getWinline(board: BoardType): number[] | null {
-    // TODO: Duplicate code in Board.tsx, pass or define there or something
+  function getWinline(board: BoardType): number[] {
     const winLineIndexes = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     for (let winLine of winLineIndexes) {
       let sum = winLine.reduce((acc, idx) => acc + board[idx], 0);
@@ -62,7 +61,7 @@ function App() {
         return winLine;
       }
     }
-    return null;
+    return [];
   }
 
   function scoreGame(state: GameStatus): void {
@@ -114,7 +113,7 @@ function App() {
   return (
     <>
       <div className={`game-status ${gameState(game[historyIndex])}`}>{gameStateToText(gameState(game[historyIndex]))}</div>
-      <Board board={game[historyIndex]} turnHandler={turnClickHandler} />
+      <Board board={game[historyIndex]} winLine={getWinline(game[historyIndex])} turnHandler={turnClickHandler} />
       <GameHistory selectedIndex={historyIndex} latestIndex={game.length - 1} clickHandler={historyClickHandler} />
       <div className="scores-container">
       <div className={`score-item ${highlightPlayerTurn('X') ? 'highlighted' : 'dimmed'}`}>

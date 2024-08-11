@@ -7,8 +7,8 @@
 }
 
 .HistoryButton {
-    width: 20px; /* Adjust the size as needed */
-    height: 20px; /* Ensure the height is equal to the width */
+    width: 15px; /* Adjust the size as needed */
+    height: 15px; /* Ensure the height is equal to the width */
     padding: 0%;
     border-radius: 50%; /* Makes the button circular */
     background-color: #ccc; /* Example background color */

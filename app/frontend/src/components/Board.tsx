@@ -2,21 +2,9 @@ import './Board.css'
 import Square from "./Square";
 
 
-export default function Board({ board, turnHandler }: any) {
+export default function Board({ board, winLine, turnHandler }: any) {
 
-    function getWinline(board: any): number[] {
-        // TODO: Duplicate code in Board.tsx, pass or define there or something
-        const winLineIndexes = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-        for (let winLine of winLineIndexes) {
-            let sum = winLine.reduce((acc, idx) => acc + board[idx], 0);
-            if (Math.abs(sum) === 3) {
-                return winLine;
-            }
-        }
-        return [];
-    }
-
-    let squares = board.map((cell: number, idx: number) => <Square index={idx} value={cell} winner={getWinline(board).includes(idx)} clickHandler={turnHandler} />)
+    let squares = board.map((cell: number, idx: number) => <Square index={idx} value={cell} winner={winLine.includes(idx)} clickHandler={turnHandler} />)
 
     return (
         <div>
