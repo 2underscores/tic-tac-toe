@@ -1,6 +1,6 @@
 .GameCell {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
     border-radius: 0px;
     border: 0; /* Remove default border */
     background-color: transparent;
