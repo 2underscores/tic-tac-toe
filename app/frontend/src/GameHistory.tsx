@@ -1,21 +1,26 @@
 // import React from "react"; // React 17+ no longer requires in jsx. automatic JSX runtime autoimports
+import './GameHistory.css'
 
-function HistoryButton({index, clickHandler}: any) {
+interface HistoryButtonProps {
+    index: number;
+    clickHandler: (index: number) => void;
+    status: 'selected' | 'played' | 'unplayed';
+}
+
+function HistoryButton({ index, clickHandler, status}: HistoryButtonProps) {
+    clickHandler = status === 'unplayed' ?  () => {} : clickHandler;
     return (
-        <div>
-            <button className="HistoryButton" onClick={()=>{clickHandler(index)}}>
-                Move {index}
-            </button>
-        </div>
+        <button className={`HistoryButton ${status}`} onClick={() => { clickHandler(index) }}></button>
     )
 }
 
-export default function GameHistory({selectedIndex, latestIndex, clickHandler}: any) {
-    const buttons = Array.from({length: latestIndex+1}).map((_, idx)=><HistoryButton index={idx} clickHandler={clickHandler}/>)
+export default function GameHistory({ selectedIndex, latestIndex, clickHandler }: any) {
+    const buttons = Array.from({ length: 10 }).map((_, idx) => 
+         <HistoryButton index={idx} clickHandler={clickHandler} status={selectedIndex===idx ? 'selected' : (idx<=latestIndex ? 'played' : 'unplayed')}/>
+)
     return (
         <>
             <div className="GameHistory">
-                Game History ({selectedIndex} selected)
                 <div>
                     {buttons}
                 </div>

@@ -77,13 +77,13 @@ function App() {
     <>
       <div>{gameState(game[historyIndex])}</div>
       <Board board={game[historyIndex]} turnHandler={turnClickHandler}/>
+      <GameHistory selectedIndex={historyIndex} latestIndex={game.length-1} clickHandler={historyClickHandler}/>
       <button onClick={resetBoard}>Reset</button>
       <div>
         <div>X: {scores.x}</div>
         <div>O: {scores.o}</div>
         <div>Draw: {scores.draw}</div>
       </div>
-      <GameHistory selectedIndex={historyIndex} latestIndex={game.length-1} clickHandler={historyClickHandler}/>
     </>
   )
 }
