@@ -15,7 +15,6 @@ export default function Board({ board, turnHandler }: any) {
         }
         return [];
     }
-    const winLine = getWinline(board);
 
     let squares = board.map((cell: number, idx: number) => <Square index={idx} value={cell} winner={getWinline(board).includes(idx)} clickHandler={turnHandler} />)
 

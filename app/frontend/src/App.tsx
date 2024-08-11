@@ -80,6 +80,15 @@ function App() {
     setHistoryIndex(0);
   }
 
+  function resetScores() {
+    setScores({ x: 0, o: 0, draw: 0 });
+  }
+
+  function resetAll() {
+    resetBoard();
+    resetScores();
+  }
+
   function highlightPlayerTurn(player: 'X' | 'O'): boolean {
     if (gameState(game[historyIndex]) !== 'ONGOING') {
       return false;
@@ -121,7 +130,7 @@ function App() {
           <div>{scores.o}</div>
         </div>
       </div>
-      {/* <button onClick={resetBoard}>Reset</button> */}
+      <button className="reset-all-button" onClick={resetAll}>Reset All</button>
     </>
   )
 }
