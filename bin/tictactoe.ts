@@ -9,6 +9,7 @@ const env = { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_
 //Hardcode as cert for cf distribution must be in us-east-1. Should make it two stacks, but whatever
 // const env = { account: process.env.CDK_DEFAULT_ACCOUNT, region: 'us-east-1' };
 console.log(`Deploying to account ${env.account} and region ${env.region}`);
+console.log(process.env);
 new FrontendStack(app, 'FrontendStack', {
   env: env,
 });
