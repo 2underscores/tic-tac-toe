@@ -15,7 +15,7 @@ export default function GameHistory({selectedIndex, latestIndex, clickHandler}: 
     return (
         <>
             <div className="GameHistory">
-                3 Game History ({selectedIndex} selected)
+                4 Game History ({selectedIndex} selected)
                 <div>
                     {buttons}
                 </div>
